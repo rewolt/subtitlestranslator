@@ -32,7 +32,7 @@ internal class Translator
             var translated = await UseExternalTranslator(subtitles[i], sourceLang, targetLang);
             sb.AppendLine(translated);
 
-            progress = PrintProgress(i, subtitles.Length, progress);
+            progress = GetProgress(i, subtitles.Length, progress);
         }
 
         return sb.ToString();
@@ -62,7 +62,7 @@ internal class Translator
 
     private static bool IsSectionTime(string possibleTime) => possibleTime.Contains(" --> ");
 
-    private static string PrintProgress(int counter, int total, string? lastProgress = null)
+    private static string GetProgress(int counter, int total, string? lastProgress = null)
     {
         var progress = (double)counter / (double)total * 100;
         var roundedUp = Math.Ceiling(progress);
